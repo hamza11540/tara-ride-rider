@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "771996260275",
+    "project_id": "ts-drivers",
+    "storage_bucket": "ts-drivers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771996260275:android:f71d02617b90e42d1f9dc6",
+        "android_client_info": {
+          "package_name": "io.skttech.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771996260275-q8dcddqpp4i0pauk0ia5defa96q9amck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7IEfTxr_7EJ9I-e7W_jY-g37GRKp3xpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771996260275-q8dcddqpp4i0pauk0ia5defa96q9amck.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "771996260275-3d24lffsndlt3bfojpum94jtrvcablid.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.skttech.driver"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
