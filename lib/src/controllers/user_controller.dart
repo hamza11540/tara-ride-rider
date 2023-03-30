@@ -12,8 +12,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../helper/location.dart';
 import '../models/custom_exception.dart';
 import '../models/exceptions_enum.dart';
+import '../models/rating_model.dart';
 import '../models/user.dart';
 import '../repositories/user_repository.dart';
+import '../services/ride_service.dart';
 import '../services/user_service.dart';
 
 class UserController extends ControllerMVC {
@@ -25,6 +27,8 @@ class UserController extends ControllerMVC {
   double? valueYesterday;
   double? valueWeek;
   double? valuePending;
+  String? ratings = "";
+
 
   UserController() {
     scaffoldKey = GlobalKey<ScaffoldState>();
@@ -234,5 +238,23 @@ class UserController extends ControllerMVC {
     await deleteAccount().catchError((error) {
       throw error;
     });
+  }
+
+  Future<String?> doGetRating() async {
+    ratings = "";
+    setState(() {
+      loading = true;
+    });
+    RatingModel _rating = await getRating().catchError((error) {
+      print(CustomTrace(StackTrace.current, message: error.toString()));
+      throw 'Erro ao buscar pedido, tente novamente';
+    }).whenComplete(() => setState(() => loading = false));
+    setState(() {
+     List<int> list =  _rating.data?.map((e) => e.rating ?? 0).toList() ?? [];
+    int? r =  list.fold<int>(0, (previousValue, element) => previousValue+element) ?? 0;
+   ratings =  (r/list.length).toStringAsFixed(1);
+      loading = false;
+    });
+    return ratings;
   }
 }

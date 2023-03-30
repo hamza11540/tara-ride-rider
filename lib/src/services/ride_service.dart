@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../helper/custom_trace.dart';
 import '../helper/helper.dart';
+import '../models/rating_model.dart';
 import '../models/ride.dart';
 import '../models/status_enum.dart';
 
@@ -133,5 +134,26 @@ Future<bool> transferRide(String rideId, String? novoEntregadorId) async {
   } else {
     CustomTrace(StackTrace.current, message: response.body);
     throw Exception(response.statusCode);
+  }
+}
+
+Future<RatingModel> getRating() async {
+  try {
+    var response = await http
+        .get(Helper.getUri('customer_feedback/'), headers: <String, String>{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+    }).timeout(const Duration(seconds: 15));
+    print(response.request!.url.toString());
+    if (response.statusCode == HttpStatus.ok) {
+      return RatingModel.fromJson(json.decode(response.body));
+    } else {
+      CustomTrace(StackTrace.current, message: response.body);
+      throw Exception(response.statusCode);
+    }
+  } catch (e, t) {
+   // print(CustomTrace(StackTrace.current, message: e.toString()));
+    print(t);
+    throw e;
   }
 }

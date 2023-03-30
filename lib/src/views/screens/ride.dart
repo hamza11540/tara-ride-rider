@@ -78,8 +78,7 @@ class RideScreenState extends StateMVC<RideScreen> {
               color: Theme.of(context).primaryColor,
               fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE_2),
           descStyle: khulaSemiBold.copyWith(
-              color: Theme.of(context).primaryColor,
-              fontSize: 12),
+              color: Theme.of(context).primaryColor, fontSize: 12),
         ),
         title: AppLocalizations.of(context)!.attention.toUpperCase(),
         desc:
@@ -88,7 +87,6 @@ class RideScreenState extends StateMVC<RideScreen> {
           DialogButton(
             radius: BorderRadius.circular(20),
             highlightColor: Theme.of(context).primaryColor.withOpacity(.2),
-
             child: Text(
               AppLocalizations.of(context)!.no,
               style: TextStyle(color: Colors.white, fontSize: 12),

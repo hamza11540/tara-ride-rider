@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:driver_app/src/models/ride.dart';
 import 'package:driver_app/src/views/widgets/link_share.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +7,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app_colors.dart';
+import '../../controllers/ride_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../helper/dimensions.dart';
 import '../../helper/images.dart';
@@ -28,6 +30,8 @@ class MenuWidget extends StatefulWidget {
 class MenuWidgetState extends StateMVC<MenuWidget> {
   late UserController _userCon;
 
+
+
   MenuWidgetState() : super(UserController()) {
     _userCon = controller as UserController;
   }
@@ -35,6 +39,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
   @override
   void initState() {
     super.initState();
+    _userCon.doGetRating();
   }
 
   @override
@@ -120,6 +125,17 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                                 top: Dimensions.PADDING_SIZE_SMALL),
                             child: Text(
                               currentUser.value.email,
+                              style: TextStyle(
+                                  fontFamily: 'Uber',
+                                  fontSize: Dimensions.FONT_SIZE_LARGE,
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: Dimensions.PADDING_SIZE_SMALL),
+                            child: Text(
+                              _userCon.ratings.toString(),
                               style: TextStyle(
                                   fontFamily: 'Uber',
                                   fontSize: Dimensions.FONT_SIZE_LARGE,

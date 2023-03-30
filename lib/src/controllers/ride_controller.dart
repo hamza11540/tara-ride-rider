@@ -1,3 +1,4 @@
+import 'package:driver_app/src/models/rating_model.dart';
 import 'package:driver_app/src/models/ride.dart';
 import 'package:driver_app/src/models/status_enum.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -11,6 +12,7 @@ class RideController extends ControllerMVC {
   bool hasMoreRides = false;
   List<Ride> rides = [];
   Ride? ride;
+
 
   Future<List<Ride>> doGetRides(
       {int? pageSize,
@@ -56,6 +58,8 @@ class RideController extends ControllerMVC {
     });
     return _ride;
   }
+
+
 
   Future<List<Ride>> doCheckNewRide() async {
     setState(() => loading = true);
