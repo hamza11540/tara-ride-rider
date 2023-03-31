@@ -29,7 +29,6 @@ class UserController extends ControllerMVC {
   double? valuePending;
   String? ratings = "";
 
-
   UserController() {
     scaffoldKey = GlobalKey<ScaffoldState>();
   }
@@ -250,9 +249,11 @@ class UserController extends ControllerMVC {
       throw 'Erro ao buscar pedido, tente novamente';
     }).whenComplete(() => setState(() => loading = false));
     setState(() {
-     List<int> list =  _rating.data?.map((e) => e.rating ?? 0).toList() ?? [];
-    int? r =  list.fold<int>(0, (previousValue, element) => previousValue+element) ?? 0;
-   ratings =  (r/list.length).toStringAsFixed(1);
+      List<int> list = _rating.data?.map((e) => e.rating ?? 0).toList() ?? [];
+      int? r = list.fold<int>(
+              0, (previousValue, element) => previousValue + element) ??
+          0;
+      ratings = (r / list.length).toStringAsFixed(1);
       loading = false;
     });
     return ratings;
