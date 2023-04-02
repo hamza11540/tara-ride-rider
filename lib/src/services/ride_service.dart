@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../helper/custom_trace.dart';
 import '../helper/helper.dart';
+import '../models/generic_model.dart';
 import '../models/rating_model.dart';
 import '../models/ride.dart';
 import '../models/status_enum.dart';
@@ -155,5 +156,29 @@ Future<RatingModel> getRating() async {
    // print(CustomTrace(StackTrace.current, message: e.toString()));
     print(t);
     throw e;
+  }
+}
+Future<GenericModel> rating(String userId, String rideId, String driverId,
+    String ratings, String comment) async {
+  var response = await http
+      .post(Helper.getUri('customer_feedback/add'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "u_id": userId,
+        "d_id": driverId,
+        "r_id": rideId,
+        "rating": ratings,
+        "comment": comment,
+      }))
+      .timeout(const Duration(seconds: 15));
+  print('response ${response.body}');
+  if (response.statusCode == HttpStatus.ok) {
+    return GenericModel.fromJson(json.decode(response.body));
+  } else {
+    CustomTrace(StackTrace.current, message: response.body);
+    throw Exception(response.statusCode);
   }
 }

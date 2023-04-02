@@ -101,4 +101,19 @@ class RideController extends ControllerMVC {
     });
     return _ride;
   }
+  Future<void> doRating(String userId, String rideId, String driverId,
+      String ratings, String comment) async {
+    // setState(() => simulating = true);
+    await rating(userId, rideId, driverId, ratings, comment)
+        .then((value) async {
+      setState(() {
+        // simulation = _simulation;
+        //  simulating = false;
+      });
+    }).catchError((error) async {
+      //  setState(() => simulating = false);
+      throw error;
+    });
+  }
 }
+

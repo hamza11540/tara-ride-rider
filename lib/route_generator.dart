@@ -55,8 +55,9 @@ class RouteGenerator {
           builder: (context) => const PhoneNumberScreen(),
         );
         case '/ratingScreen':
+      case '/ratingScreen':
         return MaterialPageRoute(
-          builder: (context) => const RatingScreen(),
+          builder: (context) =>  RatingScreen(ride: argument!.arguments['ride'],),
         );
         case '/otpScreen':
         return MaterialPageRoute(
@@ -83,6 +84,7 @@ class RouteGenerator {
           builder: (context) => RideScreen(
             rideId: argument!.arguments['rideId'] ?? '',
             showButtons: argument.arguments['showButtons'] ?? true,
+            showRating: argument.arguments['showRating'] ?? true ,
           ),
         );
       case '/Chat':

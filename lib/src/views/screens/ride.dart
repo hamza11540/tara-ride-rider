@@ -20,7 +20,8 @@ import '../widgets/custom_toast.dart';
 class RideScreen extends StatefulWidget {
   final String rideId;
   final bool showButtons;
-  const RideScreen({Key? key, required this.rideId, this.showButtons = true})
+  final bool showRating;
+  const RideScreen({Key? key, required this.rideId, this.showButtons = true, this.showRating = true})
       : super(key: key);
 
   @override
@@ -311,7 +312,7 @@ class RideScreenState extends StateMVC<RideScreen> {
                               Expanded(
                                 child: TabBarView(
                                   children: <Widget>[
-                                    RideDetailsWidget(ride: _con.ride!),
+                                    RideDetailsWidget(ride: _con.ride!, showRating: widget.showRating,),
                                     RideAddressWidget(ride: _con.ride!)
                                   ],
                                 ),
