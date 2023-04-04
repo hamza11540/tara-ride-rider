@@ -121,7 +121,7 @@ class SplashScreenState extends StateMVC<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  'assets/img/eb669a40-feb6-47af-b97d-3e6571162c41.JPG',
+                  'assets/img/WhatsApp Image 2023-04-01 at 3.05.47 AM.jpeg',
                   width: 250,
                   height: 250,
                   fit: BoxFit.cover,

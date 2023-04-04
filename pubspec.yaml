@@ -84,7 +84,7 @@ dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/img/eb669a40-feb6-47af-b97d-3e6571162c41.JPG"
+  image_path: "assets/img/WhatsApp Image 2023-04-01 at 3.05.47 AM.jpeg"
   remove_alpha_ios: true
   flutter_test:
     sdk: flutter
