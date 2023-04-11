@@ -3,6 +3,7 @@ import 'package:driver_app/src/views/screens/legal_terms.dart';
 import 'package:driver_app/src/views/screens/earnings_screen.dart';
 import 'package:driver_app/src/views/screens/phone_number_screen.dart';
 import 'package:driver_app/src/views/screens/rating_screen.dart';
+import 'package:driver_app/src/views/screens/wallet_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'src/models/screen_argument.dart';
@@ -78,6 +79,10 @@ class RouteGenerator {
       case '/ForgotPassword':
         return MaterialPageRoute(
           builder: (context) => const ForgotPasswordScreen(),
+        );
+      case '/walletScreen':
+        return MaterialPageRoute(
+          builder: (context) =>  WalletScreen(ride: argument!.arguments['rides'],),
         );
       case '/Ride':
         return MaterialPageRoute(

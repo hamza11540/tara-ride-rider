@@ -30,8 +30,6 @@ class MenuWidget extends StatefulWidget {
 class MenuWidgetState extends StateMVC<MenuWidget> {
   late UserController _userCon;
 
-
-
   MenuWidgetState() : super(UserController()) {
     _userCon = controller as UserController;
   }
@@ -134,12 +132,20 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                           Padding(
                             padding: const EdgeInsets.only(
                                 top: Dimensions.PADDING_SIZE_SMALL),
-                            child: Text(
-                              _userCon.ratings.toString(),
-                              style: TextStyle(
-                                  fontFamily: 'Uber',
-                                  fontSize: Dimensions.FONT_SIZE_LARGE,
-                                  color: Theme.of(context).primaryColor),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.black,
+                                ),
+                                Text(
+                                  _userCon.ratings.toString(),
+                                  style: TextStyle(
+                                      fontFamily: 'Uber',
+                                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                                      color: Theme.of(context).primaryColor),
+                                ),
+                              ],
                             ),
                           ),
                           Padding(
@@ -298,8 +304,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                                 bottomRight: Radius.circular(30))),
                         horizontalTitleGap: 0,
                         onTap: () {
-                          Navigator.of(context)
-                              .pushNamed('/ratingScreen');
+                          Navigator.of(context).pushNamed('/ratingScreen');
                         },
                         leading: Icon(
                           Icons.thumb_up,

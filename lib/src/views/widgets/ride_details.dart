@@ -352,31 +352,61 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
               ),
             ),
           ),
-        // if ( widget.ride.rideStatus == StatusEnum.completed)
-        //   InkWell(
-        //     onTap: () {
-        //       Navigator.of(context).pushReplacementNamed(
-        //         '/ratingScreen',
-        //         arguments: ScreenArgument({'ride': widget.ride}),
-        //       );
-        //     },
-        //     child: Container(
-        //         margin: EdgeInsets.all(10),
-        //         height: 60,
-        //         width: double.infinity,
-        //         decoration: BoxDecoration(
-        //             borderRadius: BorderRadius.circular(20),
-        //             color: AppColors.mainBlue),
-        //         child: Center(
-        //             child: Text(
-        //               "Add Rating/Feedback",
-        //               style: TextStyle(
-        //                 color: Colors.white,
-        //                 fontWeight: FontWeight.bold,
-        //                 fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-        //               ),
-        //             ))),
-        //   )
+        if ( widget.ride.rideStatus == StatusEnum.completed)
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(
+                '/ratingScreen',
+                arguments: ScreenArgument({'ride': widget.ride}),
+              );
+            },
+            child: Container(
+                margin: EdgeInsets.all(10),
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AppColors.mainBlue),
+                child: Center(
+                    child: Text(
+                      "Add Rating/Feedback",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                      ),
+                    ))),
+          ),
+        if ( widget.ride.rideStatus == StatusEnum.completed)
+        InkWell(
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed('/walletScreen',
+                arguments: ScreenArgument({'rides': widget.ride}));
+          },
+          child: Container(
+              margin: EdgeInsets.all(10),
+              height: 60,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppColors.mainBlue),
+              child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.payments_outlined, color: Colors.white,),
+                      SizedBox(width: 10,),
+                      Text(
+                        "Add Amount to Wallet",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        ),
+                      ),
+                    ],
+                  ))),
+        ),
 
       ],
     );

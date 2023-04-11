@@ -115,5 +115,26 @@ class RideController extends ControllerMVC {
       throw error;
     });
   }
+
+  Future<void> doWalletTransfer(
+      String senderId,
+      String recieverId,
+      String amount,
+      ) async {
+    // setState(() => simulating = true);
+    await walletTransfer(
+      senderId,
+      recieverId,
+      amount,
+    ).then((value) async {
+      setState(() {
+        // simulation = _simulation;
+        //  simulating = false;
+      });
+    }).catchError((error) async {
+      //  setState(() => simulating = false);
+      throw error;
+    });
+  }
 }
 

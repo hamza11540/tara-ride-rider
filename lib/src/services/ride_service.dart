@@ -182,3 +182,26 @@ Future<GenericModel> rating(String userId, String rideId, String driverId,
     throw Exception(response.statusCode);
   }
 }
+
+Future<GenericModel> walletTransfer(String senderId, String recieverId, String amount,) async {
+  var response = await http
+      .post(Helper.getUri('wallet_transfer/add'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "sender_id": senderId,
+        "reciever_id": recieverId,
+        "amount": amount,
+
+      }))
+      .timeout(const Duration(seconds: 15));
+  print('response ${response.body}');
+  if (response.statusCode == HttpStatus.ok) {
+    return GenericModel.fromJson(json.decode(response.body));
+  } else {
+    CustomTrace(StackTrace.current, message: response.body);
+    throw Exception(response.statusCode);
+  }
+}

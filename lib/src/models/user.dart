@@ -12,6 +12,7 @@ class User {
   String token;
   String firebaseToken;
   String? password;
+  num? wallet;
   Driver? driver;
   Media? picture;
 
@@ -23,6 +24,7 @@ class User {
     this.token = "",
     this.firebaseToken = "",
     this.phone = "",
+    this.wallet = 0,
     this.driver,
   });
 
@@ -32,6 +34,7 @@ class User {
         email = jsonMap['email'] ?? '',
         phone = jsonMap['phone'] ?? '',
         token = jsonMap['api_token'] ?? '',
+        wallet = jsonMap['wallet'] ?? '',
         firebaseToken = jsonMap['firebase_token'] ?? '',
         driver = jsonMap['driver'] != null
             ? Driver.fromJSON(jsonMap['driver'].runtimeType == String

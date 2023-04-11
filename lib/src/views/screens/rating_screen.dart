@@ -212,8 +212,12 @@ class _RatingScreenState extends StateMVC<RatingScreen> {
                           _formKey.currentState!.save();
                           setState(() => loading = true);
                           _con
-                              .doRating(widget.ride.user!.id, widget.ride.id,
-                                  widget.ride.user!.driver!.id??"1", ratings.toString(), feedBack.text)
+                              .doRating(
+                                  widget.ride.user!.id,
+                                  widget.ride.id,
+                                  widget.ride.user!.driver!.id!,
+                                  ratings.toString(),
+                                  feedBack.text)
                               .then((value) {
                             Navigator.pushNamedAndRemoveUntil(context, "/Home",
                                     (Route<dynamic> route) => false)
