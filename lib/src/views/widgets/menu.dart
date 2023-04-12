@@ -149,6 +149,28 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                             ),
                           ),
                           Padding(
+                            padding:
+                            const EdgeInsets.only(top: Dimensions.PADDING_SIZE_SMALL),
+                            child: Row(
+
+                              children: [
+                                Icon(
+                                  Icons.payments_outlined,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(width: 5,),
+
+                                Text(
+                                  "${currentUser.value.wallet}.0 \$",
+                                  style: TextStyle(
+                                      fontFamily: 'Uber',
+                                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                                      color: Theme.of(context).primaryColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
                             padding: const EdgeInsets.only(
                                 top: Dimensions.PADDING_SIZE_SMALL),
                             child: Text(

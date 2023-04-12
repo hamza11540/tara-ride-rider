@@ -61,7 +61,10 @@ class LoginScreenState extends StateMVC<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset("assets/img/undraw_Mobile_login_re_9ntv.png"),
+                  Padding(
+                    padding: const EdgeInsets.all(90.0),
+                    child: Image.asset('assets/img/WhatsApp Image 2023-04-01 at 3.05.47 AM.jpeg',),
+                  ),
                   SizedBox(
                     height: 30,
                   ),
@@ -137,7 +140,7 @@ class LoginScreenState extends StateMVC<LoginScreen> {
                               blurRadius: 7,
                               offset: const Offset(0, 1)),
                         ],
-                        color: Colors.blueAccent,
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(20)),
                     child: TextButton(
                       style: TextButton.styleFrom(

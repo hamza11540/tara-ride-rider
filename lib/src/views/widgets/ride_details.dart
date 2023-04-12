@@ -34,7 +34,7 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
     return Container(
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Color(0xffE6F2FE).withOpacity(0.9),
+        color: AppColors.lightBlue3.withOpacity(0.9),
         borderRadius: BorderRadius.circular(20),
       ),
       child: conteudo,
@@ -325,6 +325,58 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
                 ],
               ),
             ),
+          ),
+        ),
+        generateDecoration(
+          Column(
+            children: [
+
+                ListTile(
+                  title: Text(
+                    'Rating:',
+                    style: khulaBold.copyWith(
+                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  trailing: Container(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.5,
+                    ),
+                    child: Text(
+                      widget.ride.rating == null?"0.0" :widget.ride.rating.toString(),
+                      style: khulaRegular.copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w200,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+
+                ListTile(
+                  title: Text(
+                    'Feedback:',
+                    style: khulaBold.copyWith(
+                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  trailing: Container(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.5,
+                    ),
+                    child: Text(
+                      widget.ride.feedback == null?"0.0" :widget.ride.feedback.toString(),
+                      style: khulaRegular.copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w200,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
         if (widget.ride.observation != null)

@@ -22,10 +22,12 @@ class SplashScreen extends StatefulWidget {
   }
 }
 
-class SplashScreenState extends StateMVC<SplashScreen> {
+class SplashScreenState extends StateMVC<SplashScreen> with TickerProviderStateMixin{
   late SplashController _con;
   late UserController _userCon;
   late SettingController _settingCon;
+  late AnimationController animation;
+  late Animation<double> _fadeInFadeOut;
 
   SplashScreenState() : super(SplashController()) {
     _con = controller as SplashController;
@@ -39,6 +41,18 @@ class SplashScreenState extends StateMVC<SplashScreen> {
   void initState() {
     super.initState();
     loadData();
+    animation = AnimationController(vsync: this, duration: Duration(seconds: 1),);
+    _fadeInFadeOut = Tween<double>(begin: 0.0, end: 0.5).animate(animation);
+
+    animation.addStatusListener((status){
+      if(status == AnimationStatus.completed){
+        animation.reverse();
+      }
+      else if(status == AnimationStatus.dismissed){
+        animation.forward();
+      }
+    });
+    animation.forward();
   }
 
   Future<void> loadSettings() async {
@@ -101,7 +115,11 @@ class SplashScreenState extends StateMVC<SplashScreen> {
       }
     });
   }
-
+  @override
+  dispose() {
+    animation.dispose(); // you need this
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -115,33 +133,37 @@ class SplashScreenState extends StateMVC<SplashScreen> {
             color: AppColors.white,
           ),
           child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(
-                  'assets/img/WhatsApp Image 2023-04-01 at 3.05.47 AM.jpeg',
-                  width: 250,
-                  height: 250,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(height: 20),
-                Text("Tara Ride",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.mainBlue)),
-                Text("Move with safety",
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w200,
-                        color: AppColors.mainBlue)),
-                const SizedBox(height: 50),
-                CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainBlue),
-                ),
-              ],
+            child: FadeTransition(
+              opacity: _fadeInFadeOut,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/img/WhatsApp Image 2023-04-01 at 3.05.47 AM.jpeg',
+                    width: 250,
+                    height: 250,
+                    fit: BoxFit.cover,
+                  ),
+
+                  const SizedBox(height: 20),
+                  Text("Tara Ride",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.mainBlue)),
+                  Text("Move with safety",
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w200,
+                          color: AppColors.mainBlue)),
+                  const SizedBox(height: 50),
+                  CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainBlue),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

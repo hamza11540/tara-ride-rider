@@ -34,7 +34,7 @@ class User {
         email = jsonMap['email'] ?? '',
         phone = jsonMap['phone'] ?? '',
         token = jsonMap['api_token'] ?? '',
-        wallet = jsonMap['wallet'] ?? '',
+        wallet = jsonMap['wallet'] ?? 0,
         firebaseToken = jsonMap['firebase_token'] ?? '',
         driver = jsonMap['driver'] != null
             ? Driver.fromJSON(jsonMap['driver'].runtimeType == String

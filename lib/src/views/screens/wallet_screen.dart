@@ -55,6 +55,27 @@ class _WalletScreenState extends StateMVC<WalletScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                Image.asset('assets/img/y2020-11-19-65_generated-removebg-preview.png'),
+                Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    tileColor: AppColors.lightBlue3,
+                    title: Text(
+                      "Available Balance:",
+                      style:
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Text('${currentUser.value.wallet}.0 \$'),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
                   height: 20,
                 ),

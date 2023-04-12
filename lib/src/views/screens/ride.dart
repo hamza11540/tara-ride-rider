@@ -288,7 +288,7 @@ class RideScreenState extends StateMVC<RideScreen> {
                                     borderRadius: BorderRadius.circular(
                                       25.0,
                                     ),
-                                    color: Color(0xff00380FF),
+                                    color: Colors.black,
                                   ),
                                   labelColor: Colors.white,
                                   tabs: <Widget>[

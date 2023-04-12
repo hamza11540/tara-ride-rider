@@ -17,6 +17,8 @@ class Ride {
   OfflinePaymentMethod? offlinePaymentMethod;
   String? observation;
   double distance;
+  double? rating;
+  String? feedback;
   double amount;
   double driverValue;
 
@@ -28,6 +30,9 @@ class Ride {
     this.id = "",
     this.observation = "",
     this.distance = 0.00,
+    this.feedback = "",
+
+    this.rating = 0.00,
     this.amount = 0.00,
     this.driverValue = 0.00,
     this.appValue = 0.00,
@@ -51,9 +56,15 @@ class Ride {
             ? StatusEnumHelper.enumFromString(jsonMap['payment_status']) ??
                 StatusEnum.pending
             : StatusEnum.pending,
+        feedback = jsonMap['feedback'] != null
+            ? jsonMap['feedback']
+            : null,
         paymentGateway = jsonMap['payment_gateway'] != null
             ? jsonMap['payment_gateway']
             : null,
+        rating = jsonMap['rating'] != null
+            ? double.parse(jsonMap['rating'].toString())
+            : 0.00,
         offlinePaymentMethod = jsonMap['offline_payment_method'] != null
             ? OfflinePaymentMethod.fromJSON(jsonMap['offline_payment_method'])
             : null,
@@ -87,6 +98,8 @@ class Ride {
       'distance': distance,
       'observacao': observation,
       'valor_total': amount,
+      'feedback' : feedback,
+      'raring' : rating,
       'finalizado': finalized,
     };
   }
