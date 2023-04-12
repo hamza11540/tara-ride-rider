@@ -19,6 +19,7 @@ class Ride {
   double distance;
   double amount;
   double driverValue;
+
   double appValue;
   bool finalized;
   DateTime? createdAt;

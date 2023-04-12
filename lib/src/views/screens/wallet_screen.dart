@@ -1,6 +1,7 @@
 import 'package:driver_app/app_colors.dart';
 import 'package:driver_app/src/controllers/ride_controller.dart';
 import 'package:driver_app/src/models/ride.dart';
+import 'package:driver_app/src/repositories/user_repository.dart';
 import 'package:driver_app/src/views/widgets/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -78,7 +79,7 @@ class _WalletScreenState extends StateMVC<WalletScreen> {
                             setState(() => loading = true);
                             _con
                                 .doWalletTransfer(
-                              widget.ride.user!.driver!.id!,
+                              currentUser.value.id,
                               widget.ride.user!.id,
                               amount.text,
                             )

@@ -3,7 +3,7 @@ import 'vehicle_type.dart';
 
 class Driver {
   bool active;
-  String? id;
+  String id;
   String? link;
   String? driverLicense;
   String? brand;
@@ -22,7 +22,7 @@ class Driver {
 
   Driver.fromJSON(Map<String, dynamic> jsonMap)
       : active = jsonMap['active'] == true || jsonMap['active'] == '1',
-        id = jsonMap['id']?.toString(),
+        id = jsonMap['id'].toString(),
         link = jsonMap['link'],
         driverLicense = jsonMap['driver_license_url'],
         brand = jsonMap['brand'],
@@ -42,7 +42,7 @@ class Driver {
       'active': active ? '1' : '0',
     };
     if (id != null) {
-      json.addAll({'id': id!});
+      json.addAll({'id': id});
     }
     if (brand != null) {
       json.addAll({'brand': brand!});
