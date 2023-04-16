@@ -4,12 +4,15 @@ import 'package:driver_app/src/models/status_enum.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../helper/custom_trace.dart';
+import '../models/previous_ride_model.dart';
 import '../services/ride_service.dart';
 
 class RideController extends ControllerMVC {
   bool updatingStatus = false;
   bool loading = false;
   bool hasMoreRides = false;
+  PreviousRideResponse? previousRideModel;
+
   List<Ride> rides = [];
   Ride? ride;
 
@@ -135,6 +138,19 @@ class RideController extends ControllerMVC {
       //  setState(() => simulating = false);
       throw error;
     });
+  }
+
+
+  Future<PreviousRideResponse?> doGetAllRide(String userId,) async {
+    setState(() {
+      loading = true;
+    });
+    previousRideModel = await getAllRide(userId).catchError((error) {
+      print(CustomTrace(StackTrace.current, message: error.toString()));
+      throw 'Error';
+    }).whenComplete(() => setState(() => loading = false));
+
+    return previousRideModel;
   }
 }
 

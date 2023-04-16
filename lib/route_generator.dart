@@ -3,6 +3,8 @@ import 'package:driver_app/src/views/screens/legal_terms.dart';
 import 'package:driver_app/src/views/screens/earnings_screen.dart';
 import 'package:driver_app/src/views/screens/phone_number_screen.dart';
 import 'package:driver_app/src/views/screens/rating_screen.dart';
+import 'package:driver_app/src/views/screens/review_trip_history.dart';
+import 'package:driver_app/src/views/screens/trip_history_screen.dart';
 import 'package:driver_app/src/views/screens/wallet_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -75,6 +77,14 @@ class RouteGenerator {
             argument!.arguments['status'],
             observation: argument.arguments['observation'],
           ),
+        );
+      case '/tripHistory':
+        return MaterialPageRoute(
+          builder: (context) => const TripHistory(),
+        );
+      case '/reviewTripHistory':
+        return MaterialPageRoute(
+          builder: (context) =>  ReviewTripHistory(previousRideModel: argument!.arguments['previousRide'],),
         );
       case '/ForgotPassword':
         return MaterialPageRoute(

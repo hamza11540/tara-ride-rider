@@ -235,10 +235,10 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         horizontalTitleGap: 0,
                         onTap: () {
                           if (widget.onSwitchTab != null) {
-                            widget.onSwitchTab!('Earnings');
+                            widget.onSwitchTab!('tripHistory');
                           } else {
                             Navigator.of(context)
-                                .pushReplacementNamed('/Earnings');
+                                .pushReplacementNamed('/tripHistory');
                           }
                         },
                         leading: Icon(

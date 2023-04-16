@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import '../helper/custom_trace.dart';
 import '../helper/helper.dart';
 import '../models/generic_model.dart';
+import '../models/previous_ride_model.dart';
 import '../models/rating_model.dart';
 import '../models/ride.dart';
 import '../models/status_enum.dart';
@@ -203,5 +204,35 @@ Future<GenericModel> walletTransfer(String senderId, String recieverId, String a
   } else {
     CustomTrace(StackTrace.current, message: response.body);
     throw Exception(response.statusCode);
+  }
+}
+Future<PreviousRideResponse> getAllRide(String userId) async {
+  try {
+    var response = await http.get(
+        Helper.getUri('rides/previous_rerides/all',
+            addApiToken: true, queryParam: {'uid': userId}),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=UTF-8',
+          // 'Authorization' : 'Bearer ${currentUser.value.token}'
+        }).timeout(const Duration(seconds: 15));
+    print(response.body.toString());
+    print('rides/previous_rerides?uid=${userId}');
+
+    if (response.statusCode == HttpStatus.ok) {
+      return PreviousRideResponse.fromJson(json.decode(response.body));
+    } else {
+      final c = CustomTrace(StackTrace.current,
+          message: response.statusCode.toString());
+      print(c);
+      print("this is the error");
+
+      throw Exception(response.statusCode);
+    }
+  } catch (e, t) {
+    print(CustomTrace(StackTrace.current, message: e.toString()));
+    print("this is the error");
+    print(t);
+    throw e;
   }
 }

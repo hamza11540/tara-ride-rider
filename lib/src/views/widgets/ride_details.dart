@@ -17,11 +17,8 @@ class RideDetailsWidget extends StatefulWidget {
   final Ride ride;
   final bool showRating;
 
-
-  RideDetailsWidget({
-    Key? key,
-    required this.ride,this.showRating = true
-  }) : super(key: key);
+  RideDetailsWidget({Key? key, required this.ride, this.showRating = true})
+      : super(key: key);
 
   @override
   State<RideDetailsWidget> createState() => _RideDetailsWidgetState();
@@ -100,7 +97,6 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
         SizedBox(height: 10),
         generateDecoration(
           ListTile(
-
             title: Text(
               '${AppLocalizations.of(context)!.rideStatus}:',
               style: khulaBold.copyWith(
@@ -129,8 +125,7 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
                 title: Text(
                   'Cost of Ride:',
                   style: khulaBold.copyWith(
-                      fontSize: 14,
-                      color: Theme.of(context).primaryColor),
+                      fontSize: 14, color: Theme.of(context).primaryColor),
                 ),
                 trailing: Container(
                   constraints: BoxConstraints(
@@ -141,7 +136,7 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
                         currency: true),
                     minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
                     style: khulaRegular.copyWith(
-                      fontSize:12,
+                      fontSize: 12,
                       fontWeight: FontWeight.w200,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -317,7 +312,7 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: khulaRegular.copyWith(
-                      fontSize:12,
+                      fontSize: 12,
                       fontWeight: FontWeight.w200,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -330,52 +325,54 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
         generateDecoration(
           Column(
             children: [
-
-                ListTile(
-                  title: Text(
-                    'Rating:',
-                    style: khulaBold.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                        color: Theme.of(context).primaryColor),
+              ListTile(
+                title: Text(
+                  'Rating:',
+                  style: khulaBold.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                      color: Theme.of(context).primaryColor),
+                ),
+                trailing: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.5,
                   ),
-                  trailing: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.5,
+                  child: Text(
+                    widget.ride.rating == null
+                        ? "0.0"
+                        : widget.ride.rating.toString(),
+                    style: khulaRegular.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200,
+                      color: Theme.of(context).primaryColor,
                     ),
-                    child: Text(
-                      widget.ride.rating == null?"0.0" :widget.ride.rating.toString(),
-                      style: khulaRegular.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w200,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
+                    textAlign: TextAlign.right,
                   ),
                 ),
-
-                ListTile(
-                  title: Text(
-                    'Feedback:',
-                    style: khulaBold.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                        color: Theme.of(context).primaryColor),
+              ),
+              ListTile(
+                title: Text(
+                  'Feedback:',
+                  style: khulaBold.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                      color: Theme.of(context).primaryColor),
+                ),
+                trailing: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.5,
                   ),
-                  trailing: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.5,
+                  child: Text(
+                    widget.ride.feedback == null
+                        ? "0.0"
+                        : widget.ride.feedback.toString(),
+                    style: khulaRegular.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w200,
+                      color: Theme.of(context).primaryColor,
                     ),
-                    child: Text(
-                      widget.ride.feedback == null?"0.0" :widget.ride.feedback.toString(),
-                      style: khulaRegular.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w200,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
+                    textAlign: TextAlign.right,
                   ),
                 ),
+              ),
             ],
           ),
         ),
@@ -404,7 +401,7 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
               ),
             ),
           ),
-        if ( widget.ride.rideStatus == StatusEnum.completed)
+        if (widget.ride.rideStatus == StatusEnum.completed)
           InkWell(
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
@@ -421,45 +418,49 @@ class _RideDetailsWidgetState extends State<RideDetailsWidget> {
                     color: AppColors.mainBlue),
                 child: Center(
                     child: Text(
-                      "Add Rating/Feedback",
+                  "Add Rating/Feedback",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                  ),
+                ))),
+          ),
+        if (widget.ride.rideStatus == StatusEnum.completed)
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/walletScreen',
+                  arguments: ScreenArgument({'rides': widget.ride}));
+            },
+            child: Container(
+                margin: EdgeInsets.all(10),
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AppColors.mainBlue),
+                child: Center(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.payments_outlined,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Add Amount to Wallet",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
                       ),
-                    ))),
+                    ),
+                  ],
+                ))),
           ),
-        if ( widget.ride.rideStatus == StatusEnum.completed)
-        InkWell(
-          onTap: () {
-            Navigator.of(context).pushReplacementNamed('/walletScreen',
-                arguments: ScreenArgument({'rides': widget.ride}));
-          },
-          child: Container(
-              margin: EdgeInsets.all(10),
-              height: 60,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColors.mainBlue),
-              child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.payments_outlined, color: Colors.white,),
-                      SizedBox(width: 10,),
-                      Text(
-                        "Add Amount to Wallet",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                        ),
-                      ),
-                    ],
-                  ))),
-        ),
-
       ],
     );
   }
