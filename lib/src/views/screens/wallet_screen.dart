@@ -53,98 +53,123 @@ class _WalletScreenState extends StateMVC<WalletScreen> {
         body: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset('assets/img/y2020-11-19-65_generated-removebg-preview.png'),
-                Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+            child: currentUser.value.wallet == 0
+                ? Container(
+              height: 500,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Icon(Icons.hourglass_empty, color: AppColors.mainBlue,size: 50,),
+                      SizedBox(height: 20,),
+                      Center(
+                          child: Text(
+                        "You can transfer Amount because you \nhave 0 balance in your wallet",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      )),
+                    ],
                   ),
-                  child: ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    tileColor: AppColors.lightBlue3,
-                    title: Text(
-                      "Available Balance:",
-                      style:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    trailing: Text('${currentUser.value.wallet}.0 \$'),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: amount,
-                  cursorColor: Colors.black,
-                  style: const TextStyle(color: Colors.black, fontSize: 12),
-                  decoration: customInputDecoration(
-                      hintText: "Amount",
-                      hintTextStyle:
-                          const TextStyle(color: Colors.grey, fontSize: 12)),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: loading
-                      ? null
-                      : () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            setState(() => loading = true);
-                            _con
-                                .doWalletTransfer(
-                              currentUser.value.id,
-                              widget.ride.user!.id,
-                              amount.text,
-                            )
-                                .then((value) {
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                      "/Home", (Route<dynamic> route) => false)
-                                  .catchError((onError) {
-                                setState(() => loading = false);
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content:
-                                      Text("Amount not added Successfully"),
-                                  backgroundColor: Theme.of(context).errorColor,
-                                ));
-                              });
-                              setState(() => loading = false);
-                              return;
-                            });
-                          }
-                        },
-                  child: loading
-                      ? Center(
-                          child: CircularProgressIndicator(
-                              color: AppColors.mainBlue),
-                        )
-                      : Container(
-                          height: 60,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColors.mainBlue),
-                          child: Center(
-                            child: Text(
-                              "Add Amount",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
+                )
+                : Column(
+                    children: [
+                      Image.asset(
+                          'assets/img/y2020-11-19-65_generated-removebg-preview.png'),
+                      Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          tileColor: AppColors.lightBlue3,
+                          title: Text(
+                            "Available Balance:",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          trailing: Text('${currentUser.value.wallet}.0 \$'),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: amount,
+                        cursorColor: Colors.black,
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 12),
+                        decoration: customInputDecoration(
+                            hintText: "Amount",
+                            hintTextStyle: const TextStyle(
+                                color: Colors.grey, fontSize: 12)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: loading
+                            ? null
+                            : () {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  setState(() => loading = true);
+                                  _con
+                                      .doWalletTransfer(
+                                    currentUser.value.id,
+                                    widget.ride.user!.id,
+                                    amount.text,
+                                  )
+                                      .then((value) {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            "/Home",
+                                            (Route<dynamic> route) => false)
+                                        .catchError((onError) {
+                                      setState(() => loading = false);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "Amount not added Successfully"),
+                                        backgroundColor:
+                                            Theme.of(context).errorColor,
+                                      ));
+                                    });
+                                    setState(() => loading = false);
+                                    return;
+                                  });
+                                }
+                              },
+                        child: loading
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                    color: AppColors.mainBlue),
+                              )
+                            : Container(
+                                height: 60,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: AppColors.mainBlue),
+                                child: Center(
+                                  child: Text(
+                                    "Add Amount",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),

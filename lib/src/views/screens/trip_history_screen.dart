@@ -76,7 +76,17 @@ class _TripHistoryState extends StateMVC<TripHistory> {
                 ))
               : _rideCon.previousRideModel?.previousRide == null ||
                       _rideCon.previousRideModel!.previousRide!.isEmpty
-                  ? Center(child: Text("No previous ride found"))
+                  ? Center(child: Container(
+                      height: 500,
+                      width: MediaQuery.of(context).size.width,
+
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("No Trip History"),
+                        ],
+                      )))
                   : ListView.builder(
                       padding: EdgeInsets.only(left: 16, right: 16, top: 16),
                       shrinkWrap: true,
