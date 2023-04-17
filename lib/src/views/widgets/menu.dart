@@ -45,7 +45,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
     return !currentUser.value.auth
         ? SizedBox()
         : Scaffold(
-            backgroundColor: AppColors.white,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: Column(
               children: [
                 InkWell(
@@ -59,7 +59,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                     width: MediaQuery.of(context).size.width,
                     padding:
                         const EdgeInsets.only(top: 20, bottom: 15, left: 20),
-                    decoration: BoxDecoration(color: AppColors.white),
+                    decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,7 +198,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                           color: Theme.of(context).colorScheme.secondary,
                           height: 0),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),
@@ -227,7 +227,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         height: 10,
                       ),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),
@@ -235,10 +235,10 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         horizontalTitleGap: 0,
                         onTap: () {
                           if (widget.onSwitchTab != null) {
-                            widget.onSwitchTab!('Earnings');
+                            widget.onSwitchTab!('tripHistory');
                           } else {
                             Navigator.of(context)
-                                .pushReplacementNamed('/Earnings');
+                                .pushReplacementNamed('/tripHistory');
                           }
                         },
                         leading: Icon(
@@ -257,7 +257,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         height: 10,
                       ),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),
@@ -288,7 +288,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         height: 10,
                       ),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),
@@ -319,7 +319,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         height: 10,
                       ),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),
@@ -345,7 +345,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         height: 10,
                       ),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),
@@ -368,7 +368,7 @@ class MenuWidgetState extends StateMVC<MenuWidget> {
                         height: 10,
                       ),
                       ListTile(
-                        tileColor: AppColors.mainBlue,
+                        tileColor: AppColors.mainBlue.withOpacity(0.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(30),

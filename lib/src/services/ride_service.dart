@@ -206,18 +206,18 @@ Future<GenericModel> walletTransfer(String senderId, String recieverId, String a
     throw Exception(response.statusCode);
   }
 }
-Future<PreviousRideResponse> getAllRide(String userId) async {
+Future<PreviousRideResponse> getAllRide(String driverId) async {
   try {
     var response = await http.get(
         Helper.getUri('rides/previous_rerides/all',
-            addApiToken: true, queryParam: {'uid': userId}),
+            addApiToken: true, queryParam: {'did': driverId}),
         headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json; charset=UTF-8',
           // 'Authorization' : 'Bearer ${currentUser.value.token}'
         }).timeout(const Duration(seconds: 15));
     print(response.body.toString());
-    print('rides/previous_rerides?uid=${userId}');
+    print('rides/previous_rerides/all?did=${driverId}');
 
     if (response.statusCode == HttpStatus.ok) {
       return PreviousRideResponse.fromJson(json.decode(response.body));
