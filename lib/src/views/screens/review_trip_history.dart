@@ -75,82 +75,30 @@ class _ReviewTripHistoryState extends StateMVC<ReviewTripHistory> {
         backgroundColor: AppColors.mainBlue,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          generateDecoration(
-            ListTile(
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
-                vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
-              ),
-              title: Text(
-                'Boarding Place:',
-                style: khulaBold.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                    color: Theme.of(context).primaryColor),
-              ),
-              subtitle: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Dimensions.FONT_SIZE_EXTRA_SMALL,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            generateDecoration(
+              ListTile(
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
+                  vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
                 ),
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.55,
+                title: Text(
+                  'Boarding Place:',
+                  style: khulaBold.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                      color: Theme.of(context).primaryColor),
                 ),
-                child: AutoSizeText(
-                  widget.previousRideModel.boardingLocationData
-                          ?.formattedAddress ??
-                      "",
-                  minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                  style: khulaRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_LARGE,
-                    fontWeight: FontWeight.w600,
-                    height: 1.35,
-                    color: Theme.of(context).primaryColor,
+                subtitle: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Dimensions.FONT_SIZE_EXTRA_SMALL,
                   ),
-                ),
-              ),
-
-            ),
-          ),
-          generateDecoration(
-            ListTile(
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
-              ),
-              title: Text(
-                'Destination Place:',
-                style: khulaBold.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                    color: Theme.of(context).primaryColor),
-              ),
-              subtitle: Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: Dimensions.PADDING_SIZE_SMALL,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.mainBlue,
-                  border: Border.all(width: 1, color: AppColors.mainBlue),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
-                    vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.55,
                   ),
-                  leading: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.locationArrow,
-                        color: AppColors.white,
-                      ),
-                    ],
-                  ),
-                  iconColor: Theme.of(context).primaryColor,
-                  minLeadingWidth: 0,
-                  title: AutoSizeText(
-                    widget.previousRideModel.destinationLocationData
+                  child: AutoSizeText(
+                    widget.previousRideModel.boardingLocationData
                             ?.formattedAddress ??
                         "",
                     minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
@@ -158,145 +106,234 @@ class _ReviewTripHistoryState extends StateMVC<ReviewTripHistory> {
                       fontSize: Dimensions.FONT_SIZE_LARGE,
                       fontWeight: FontWeight.w600,
                       height: 1.35,
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                     ),
-                    maxLines: 2,
                   ),
                 ),
-              ),
 
-            ),
-          ),
-          generateDecoration(
-            Column(
-              children: [
-                ListTile(
-                  title: Text(
-                    'Total Amount:',
-                    style: khulaBold.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_LARGE,
-                        color: Color.fromARGB(255, 246, 61, 61)),
-                  ),
-                  trailing: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.5,
-                    ),
-                    child: AutoSizeText(
-                      '${NumberFormat.simpleCurrency(name: setting.value.currency).currencySymbol} ${widget.previousRideModel.totalValue}',
-                      minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                      style: khulaRegular.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_LARGE,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 246, 61, 61)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          generateDecoration(
-            Column(
-              children: [
-
-                  ListTile(
-                    title: Text(
-                      'Payment Method:',
-                      style: khulaBold.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_LARGE,
-                          color: Theme.of(context).primaryColor),
-                    ),
-                    trailing: Container(
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.5,
-                      ),
-                      child: AutoSizeText(
-                       "Cash",
-                        minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                        style: khulaRegular.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_LARGE,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                  ),
-
-                  ListTile(
-                    title: Text(
-                      'Payment Status:',
-                      style: khulaBold.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_LARGE,
-                          color: Theme.of(context).primaryColor),
-                    ),
-                    trailing: Container(
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.5,
-                      ),
-                      child: AutoSizeText(
-                        widget.previousRideModel.paymentStatus??"",
-                        minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                        style: khulaRegular.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_LARGE,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          generateDecoration(
-            ListTile(
-              title: Text(
-                'Estimate Distance:',
-                style: khulaBold.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_LARGE,
-                    color: Theme.of(context).primaryColor),
-              ),
-              trailing: Container(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.5,
-                ),
-                child: AutoSizeText(
-                  '${widget.previousRideModel.distance}',
-                  minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                  style: khulaRegular.copyWith(
-                    fontSize: Dimensions.FONT_SIZE_LARGE,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
               ),
             ),
-          ),
-          generateDecoration(
-            Column(
-              children: [
-                ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
-                    vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
+            generateDecoration(
+              ListTile(
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                  vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
+                ),
+                title: Text(
+                  'Destination Place:',
+                  style: khulaBold.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                      color: Theme.of(context).primaryColor),
+                ),
+                subtitle: Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: Dimensions.PADDING_SIZE_SMALL,
                   ),
-                  title: Text(
-                    'Rating:',
-                    style: khulaBold.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_LARGE,
-                        color: Theme.of(context).primaryColor),
+                  decoration: BoxDecoration(
+                    color: AppColors.mainBlue,
+                    border: Border.all(width: 1, color: AppColors.mainBlue),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  trailing: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.5,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
+                      vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    leading: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Icon(
+                          FontAwesomeIcons.locationArrow,
+                          color: AppColors.white,
+                        ),
+                      ],
+                    ),
+                    iconColor: Theme.of(context).primaryColor,
+                    minLeadingWidth: 0,
+                    title: AutoSizeText(
+                      widget.previousRideModel.destinationLocationData
+                              ?.formattedAddress ??
+                          "",
+                      minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                      style: khulaRegular.copyWith(
+                        fontSize: Dimensions.FONT_SIZE_LARGE,
+                        fontWeight: FontWeight.w600,
+                        height: 1.35,
+                        color: Colors.white,
+                      ),
+                      maxLines: 2,
+                    ),
+                  ),
+                ),
+
+              ),
+            ),
+            generateDecoration(
+              Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Total Amount:',
+                      style: khulaBold.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_LARGE,
+                          color: Color.fromARGB(255, 246, 61, 61)),
+                    ),
+                    trailing: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.5,
+                      ),
+                      child: AutoSizeText(
+                        '${NumberFormat.simpleCurrency(name: setting.value.currency).currencySymbol} ${widget.previousRideModel.totalValue}',
+                        minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                        style: khulaRegular.copyWith(
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 246, 61, 61)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            generateDecoration(
+              Column(
+                children: [
+
+                    ListTile(
+                      title: Text(
+                        'Payment Method:',
+                        style: khulaBold.copyWith(
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            color: Theme.of(context).primaryColor),
+                      ),
+                      trailing: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.5,
+                        ),
+                        child: AutoSizeText(
+                         "Cash",
+                          minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                          style: khulaRegular.copyWith(
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+
+                    ListTile(
+                      title: Text(
+                        'Payment Status:',
+                        style: khulaBold.copyWith(
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            color: Theme.of(context).primaryColor),
+                      ),
+                      trailing: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.5,
+                        ),
+                        child: AutoSizeText(
+                          widget.previousRideModel.paymentStatus??"",
+                          minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                          style: khulaRegular.copyWith(
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            generateDecoration(
+              ListTile(
+                title: Text(
+                  'Estimate Distance:',
+                  style: khulaBold.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                      color: Theme.of(context).primaryColor),
+                ),
+                trailing: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.5,
+                  ),
+                  child: AutoSizeText(
+                    '${widget.previousRideModel.distance}',
+                    minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                    style: khulaRegular.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            generateDecoration(
+              Column(
+                children: [
+                  ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
+                      vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
+                    ),
+                    title: Text(
+                      'Rating:',
+                      style: khulaBold.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_LARGE,
+                          color: Theme.of(context).primaryColor),
+                    ),
+                    trailing: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.5,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                            AutoSizeText(
+                              widget.previousRideModel.rating == null?"Not Rated" :"${widget.previousRideModel.rating}.0",
+                              minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: khulaRegular.copyWith(
+                                fontSize: Dimensions.FONT_SIZE_LARGE,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
+                      vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
+                    ),
+                    title: Text(
+                      'Feedback:',
+                      style: khulaBold.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_LARGE,
+                          color: Theme.of(context).primaryColor),
+                    ),
+                    trailing: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.5,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
 
                           AutoSizeText(
-                            widget.previousRideModel.rating == null?"Not Rated" :"${widget.previousRideModel.rating.toString()}.0",
+                            widget.previousRideModel.comment == null?"Not Feedback Added" :widget.previousRideModel.comment.toString(),
                             minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
@@ -307,51 +344,16 @@ class _ReviewTripHistoryState extends StateMVC<ReviewTripHistory> {
                             ),
                           ),
 
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: Dimensions.FONT_SIZE_DEFAULT + 1,
-                    vertical: Dimensions.FONT_SIZE_EXTRA_SMALL / 2,
-                  ),
-                  title: Text(
-                    'Feedback:',
-                    style: khulaBold.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_LARGE,
-                        color: Theme.of(context).primaryColor),
-                  ),
-                  trailing: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.5,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                ],
+              ),
 
-                        AutoSizeText(
-                          widget.previousRideModel.comment == null?"Not Feedback Added" :widget.previousRideModel.comment.toString(),
-                          minFontSize: Dimensions.FONT_SIZE_EXTRA_SMALL,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: khulaRegular.copyWith(
-                            fontSize: Dimensions.FONT_SIZE_LARGE,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-
-                      ],
-                    ),
-                  ),
-                ),
-              ],
             ),
-
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
